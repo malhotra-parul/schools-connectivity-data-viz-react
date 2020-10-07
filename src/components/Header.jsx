@@ -10,7 +10,7 @@ const AppBar = styled.nav`
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    box-shadow: 0 7px 15px -8px rgba(25,4,69,0.1);
+    filter: drop-shadow(0 0 0.15rem #66c1f9);
 `
 
 const Title = styled.span`
