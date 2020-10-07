@@ -9,8 +9,9 @@ const BottomBar = styled.div`
   margin: 0 auto;
   background: #fff;
   color: #3a99cc;
-  width: 80%;
+  width: 100vw;
   display: flex;
+  padding: 20px;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1em;
@@ -59,7 +60,7 @@ const social = [
 ];
 
 const Footer = () => {
-  const footer = "© All rights are reserved | 2020 ";
+  const footer = "© Parul Malhotra ";
 
   return (
     <BottomBar>

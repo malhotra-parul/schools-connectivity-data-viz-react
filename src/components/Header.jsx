@@ -1,33 +1,54 @@
-import React from 'react'
-import styled from "styled-components"
+import React from "react";
+import styled from "styled-components";
 
 const AppBar = styled.nav`
-    background: #3a99cc;
-    color: #fff ;
-    width: 100%;
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    filter: drop-shadow(0 0 0.15rem #66c1f9);
-`
+  color: #000;
+  width: 100vw;
+  height: 17vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+`;
 
 const Title = styled.span`
-   font-size: 1.6em;
-   font-weight: bold;
-   padding-left: 20px;
-   font-family: 'Roboto',sans-serif;
-`
+  font-size: 1.7em;
+  font-weight: bold;
+  padding-left: 20px;
+  font-family: serif;
+  position: relative;
+
+
+  &::after {
+    content: "";
+    height: 6px;
+    width: 270px;
+    background: #fbd671;
+    position: absolute;
+    bottom: 4px;
+    left: 28px;
+    z-index: -1;
+  }
+`;
+
+const Subtitle = styled.p`
+    color: #777989;
+    padding: 0 20px;
+    width: 400px;
+    text-align: justify;
+`;
 
 const Header = () => {
-    const title = "Opencity Data Analysis"
-    
-    return (
-       <AppBar>
-            <Title>{title}</Title>
-       </AppBar>
-    )
-}
+  const title = "Opencity Data Analysis";
 
-export default Header
+  return (
+    <AppBar>
+      <Title>{title}</Title>
+      <Subtitle>Use open source data for Bengaluru to 
+          analyze the school's connectivity by buses.</Subtitle>
+    </AppBar>
+  );
+};
+
+export default Header;
