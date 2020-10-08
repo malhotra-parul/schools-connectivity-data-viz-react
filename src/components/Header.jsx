@@ -3,13 +3,16 @@ import styled from "styled-components";
 
 const AppBar = styled.nav`
   color: #000;
-  width: 100vw;
+  width: 430px;
   height: 17vh;
   padding: 20px;
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: flex-start;
+
 `;
 
 const Title = styled.span`
@@ -35,7 +38,7 @@ const Title = styled.span`
 const Subtitle = styled.p`
     color: #777989;
     padding: 0 20px;
-    width: 400px;
+    width: 430px;
     text-align: justify;
 `;
 
@@ -45,8 +48,8 @@ const Header = () => {
   return (
     <AppBar>
       <Title>{title}</Title>
-      <Subtitle>Use open source data for Bengaluru to 
-          analyze the school's connectivity by buses.</Subtitle>
+      <Subtitle>Use open source data for Bengaluru city 
+          to analyze the school's connectivity by buses.</Subtitle>
     </AppBar>
   );
 };

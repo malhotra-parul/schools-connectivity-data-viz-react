@@ -1,13 +1,14 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { InputBox, Label } from "./InputStyles";
 
 const Autocomplete = ({ suggestions, setSelectedSchool }) => {
-  const [activeSuggestion, setActiveSuggestion] = useState(0);
+  const [activeSuggestion, setActiveSuggestion] = useState(null);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [userInput, setUserInput] = useState("");
+  const wrapperRef = useRef(null);
 
   useEffect(() => {
     let filtered;
@@ -28,8 +29,21 @@ const Autocomplete = ({ suggestions, setSelectedSchool }) => {
     return () => clearTimeout(timerId);
   }, [userInput, suggestions]);
 
+  useEffect(()=>{
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleClickOutside = (event)=> {
+    const {current: wrap} = wrapperRef;
+    if(wrap && !wrap.contains(event.target)){
+      setShowSuggestion(false);
+    }
+  };
+
   const onChange = (e) => {
-    setActiveSuggestion(0);
+    setActiveSuggestion(null);
     setShowSuggestion(true);
     setUserInput(e.target.value);
   };
@@ -39,7 +53,7 @@ const Autocomplete = ({ suggestions, setSelectedSchool }) => {
       return suggestion.name === e.currentTarget.innerText;
     });
     setSelectedSchool(selected);
-    setActiveSuggestion(0);
+    setActiveSuggestion(null);
     setFilteredSuggestions([]);
     setShowSuggestion(false);
     setUserInput(e.currentTarget.innerText);
@@ -48,7 +62,7 @@ const Autocomplete = ({ suggestions, setSelectedSchool }) => {
   const onKeyDown = (e) => {
     // User pressed the enter key
     if (e.keyCode === 13) {
-      setActiveSuggestion(0);
+      setActiveSuggestion(null);
       setShowSuggestion(false);
       setUserInput(filteredSuggestions[activeSuggestion].name);
 
@@ -70,7 +84,7 @@ const Autocomplete = ({ suggestions, setSelectedSchool }) => {
   };
 
   return (
-    <SchoolWrapper >
+    <SchoolWrapper ref={wrapperRef} >
    
       <InputBox
         type="text"
@@ -81,10 +95,10 @@ const Autocomplete = ({ suggestions, setSelectedSchool }) => {
       />
       <Label>School</Label>
       {showSuggestion && userInput.length >= 3 && filteredSuggestions && (
-        <ul className="suggestions">
+        <Suggestions>
           {filteredSuggestions.length ? (
             filteredSuggestions.map((suggestion, index) => (
-              <li
+              <List
                 tabIndex="-1"
                 index={index}
                 key={index}
@@ -94,14 +108,14 @@ const Autocomplete = ({ suggestions, setSelectedSchool }) => {
                 onClick={onClick}
               >
                 {suggestion.name}
-              </li>
+              </List>
             ))
           ) : (
-            <div className="no-suggestions">
-              <em>No suggestions, you're on your own!</em>
-            </div>
+            <NoSuggestions>
+              <em>No match found! Try again!</em>
+            </NoSuggestions>
           )}
-        </ul>
+        </Suggestions>
       )}
     </SchoolWrapper>
   );
@@ -122,22 +136,47 @@ padding-bottom: 60px;
 position: relative;
 `;
 
-// const Input = styled.input`
-//    width: 250px;
-//   border-radius: 5px;
-//   height: 40px;
-//   background: #dedfe0;
-//   border: none;
-//   -webkit-box-shadow: 5px 5px 5px 0px rgba(50, 50, 50, 0.24);
-// -moz-box-shadow:    5px 5px 5px 0px rgba(50, 50, 50, 0.24);
-// box-shadow:         5px 5px 5px 0px rgba(50, 50, 50, 0.24);
-// `;
+const NoSuggestions = styled.div`
+   color: #999;
+   height: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   line-height: 40px;
+    font-weight: 600;
+    font-size: 12px;
+    
+`;
 
-// const Label = styled.label`
-//   font-size: 14px;
-//   font-weight: 700;
-//   font-family: 'Lato', sans-serif;
-//   color: #777989;
-//   position: absolute;
-//   left: 40px;
-// `;
+const Suggestions = styled.ul`
+  border: 1px solid lightgray;
+  border-top-width: 0;
+  border-radius: 3px;
+  list-style: none;
+  margin-top: 0;
+  max-height: auto;
+  overflow-y: auto;
+  padding-left: 0;
+  width: 350px;
+
+`;
+
+const List = styled.li`
+    padding: 0.5rem;
+    border-bottom: 1px solid lightgray;
+    color: #383a42;
+   height: 30px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   line-height: 40px;
+    font-weight: 600;
+    font-size: 12px;
+
+    &:hover{
+      background-color: #ecb241;
+      color: #383a42;
+      cursor: pointer;
+      font-weight: 800;
+    }
+`

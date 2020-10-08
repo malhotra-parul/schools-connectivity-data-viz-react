@@ -8,13 +8,15 @@ const BottomBar = styled.div`
   height: 5vh;
   margin: 0 auto;
   background: #fff;
-  color: #3a99cc;
+  color: gray;
   width: 100vw;
   display: flex;
   padding: 20px;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1em;
+  grid-row: 3;
+  grid-column: 1/-1;
 `;
 
 const Copyright = styled.span`

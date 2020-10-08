@@ -12,7 +12,7 @@ const Radius = () => {
         type="number"
         value={radius}
         onChange={(e) => setRadius(e.target.value)}
-        placeholder="Find places within the radius (km)"
+        placeholder="Find bus stops within the radius (km)"
       />
       <Label>Radius</Label>
     </RadiusContainer>

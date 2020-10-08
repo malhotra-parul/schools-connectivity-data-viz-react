@@ -41,3 +41,10 @@
     transform: rotate(360deg);
   }
 }
+
+.suggestion-active{
+  background-color: #ecb241;
+  color: #383a42;
+  cursor: pointer;
+  font-weight: 800;
+}
