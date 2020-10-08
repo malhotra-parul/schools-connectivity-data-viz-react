@@ -3,7 +3,19 @@ import styled from "styled-components";
 import { InputBox, Label } from "./InputStyles";
 
 const Radius = () => {
-  const [radius, setRadius] = useState(null);
+  const [radius, setRadius] = useState("");
+
+  const onChangeRadius = (e) => {
+    const input = parseInt(e.target.value);
+    console.log(input);
+    if(input < 1) {
+      setRadius("");
+    } else if(input >= 10){
+      setRadius(10);
+    } else {
+      setRadius(input);
+    }
+  }
 
   return (
     <RadiusContainer>
@@ -11,8 +23,8 @@ const Radius = () => {
       <InputBox
         type="number"
         value={radius}
-        onChange={(e) => setRadius(e.target.value)}
-        placeholder="Find bus stops within the radius (km)"
+        onChange={onChangeRadius}
+        placeholder="Find bus stops within 1 - 10 km"
       />
       <Label>Radius</Label>
     </RadiusContainer>
