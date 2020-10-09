@@ -48,3 +48,26 @@
   cursor: pointer;
   font-weight: 800;
 }
+
+.schoolPopup{
+  font-size: 12px;
+  color: #777999;
+  border: 1px solid #777999;
+  border-radius: 5px;
+  word-break: break-word;
+  width: auto;
+}
+
+.busStopPopup{
+  font-size: 12px;
+  color: #777999;
+  border: 1px solid #777999;
+  border-radius: 5px;
+  word-break: break-word;
+  width: auto;
+}
+
+.colored{
+transform: scale(1.5);
+color: #389de4;
+}

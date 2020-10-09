@@ -4,9 +4,9 @@ import Autocomplete from "./Autocomplete";
 import Radius from "./Radius";
 import * as schools from "../data/schools.json";
 
-const Sidebar = () => {
-  const [school, setSchool] = useState(null);
-  const [loading, setLoading] = useState(false);
+           
+const Sidebar = ({onSetSchool, onSetRadius}) => {
+
 
   const listOfSchools = schools.features
     .filter((schoolResult) => {
@@ -22,8 +22,12 @@ const Sidebar = () => {
     });
 
   const setSelectedSchool = (value) => {
-    setSchool(value);
+    onSetSchool(value);
   };
+
+  const setSelectedRadius = (value) => {
+    onSetRadius(value);
+  }
 
   return (
     <Wrapper>
@@ -31,7 +35,7 @@ const Sidebar = () => {
         suggestions={listOfSchools}
         setSelectedSchool={setSelectedSchool}
       />
-      <Radius />
+      <Radius setSelectedRadius={setSelectedRadius}/>
     </Wrapper>
   );
 };
@@ -46,6 +50,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-column: 1;
   display: flex;
+  border-radius: 10px;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
