@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import styled from "styled-components";
 import ControlPanel from "./ControlPanel";
 import Card from "./Card";

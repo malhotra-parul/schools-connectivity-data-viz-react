@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Header from "../components/Header"
-import Footer from "../components/Footer"
-import Sidebar from "../components/Sidebar"
-import Maps from "../components/Maps"
+import Header from "./Header"
+import Footer from "./Footer"
+import Sidebar from "./Sidebar"
+import Maps from "./Maps"
 import styled from "styled-components"
 import axios from "axios"
 
