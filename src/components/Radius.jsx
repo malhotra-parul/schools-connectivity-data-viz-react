@@ -7,11 +7,10 @@ const Radius = ({setSelectedRadius}) => {
 
   const onChangeRadius = (e) => {
     const input = parseInt(e.target.value);
-    if(isNaN(input)){
-      setRadius(1);
-      setSelectedRadius(1);
-    }
-    else if(input < 1) {
+    if(e.target.value === ""){
+       setRadius("");
+       setSelectedRadius("");
+    } else if(isNaN(input) || input < 1){
       setRadius("");
       setSelectedRadius("");
     } else if(input >= 10){
@@ -27,7 +26,7 @@ const Radius = ({setSelectedRadius}) => {
     <RadiusContainer>
 
       <InputBox
-        type="number"
+        type="text"
         value={radius}
         onChange={onChangeRadius}
         placeholder="Find bus stops within 1 - 10 km"
