@@ -43,7 +43,7 @@ const Homepage = () => {
           setLoading(true);
           axios
       .post(
-        "https://geojson-backend-api.malhotra-parul.vercel.app/find",
+        "https://geojson-backend.vercel.app/find",
         schoolResult
       )
       .then((res) => {
