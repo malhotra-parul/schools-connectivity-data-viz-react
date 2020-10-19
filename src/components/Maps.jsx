@@ -94,7 +94,7 @@ const Maps = ({
                           style={{
                             fontSize: "32px",
                             color: `${
-                              colorMarker === busStop ? "#ee5861" : "#389de4"
+                              colorMarker === busStop ? "#ee5861" : "#5a667a"
                             }`,
                             transition: "color 0.5s ease",
                           }}
